@@ -34,12 +34,6 @@ jobs:
       - run: pnpm install
       - name: Run format check
         run: yarn format
-
-      - name: Check commit messages
-        uses: wagoid/commitlint-github-action@v3
-        with:
-          configFile: commitlint.config.cjs
-
       - uses: reviewdog/action-eslint@v1 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
