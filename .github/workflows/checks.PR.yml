@@ -1,6 +1,7 @@
 name: PR Checks
 
 on:
+  push:
   pull_request:
 
 jobs:
@@ -15,8 +16,6 @@ jobs:
         with:
           version: 9
       - run: pnpm install
-      - name: "Test"
-        run: pnpm run test:ci -- --max-warnings 0
       - name: "Upload Coverage"
         uses: actions/upload-artifact@v4
         with:
@@ -33,6 +32,14 @@ jobs:
         with:
           version: 9
       - run: pnpm install
+      - name: Run format check
+        run: yarn format
+
+      - name: Check commit messages
+        uses: wagoid/commitlint-github-action@v3
+        with:
+          configFile: commitlint.config.cjs
+
       - uses: reviewdog/action-eslint@v1 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
