@@ -7,8 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint src --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext js,jsx,ts,tsx --fix",
     "shad:add": "npx shadcn-ui@latest add",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -17,7 +17,8 @@
     "email:dev": "email dev --dir \"./src/email/templates\"",
     "email:build": "email build --dir \"./src/email/templates\"",
     "email:start": "email start",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,scss,html}'"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,scss,html}'",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -109,13 +110,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run lint && npm run format"
+      "pre-push": "pnpm run lint && pnpm run format"
     }
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
-      "npm run lint",
-      "npm run format"
+      "pnpm run lint",
+      "pnpm run format"
     ]
   }
 }

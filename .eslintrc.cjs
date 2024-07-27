@@ -45,6 +45,7 @@ module.exports = {
   ],
   rules: {
     "no-console": "error",
+    "prettier/prettier": "error",
     "react/prop-types": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
